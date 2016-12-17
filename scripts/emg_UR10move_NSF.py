@@ -1,19 +1,31 @@
 #!/usr/bin/env python
 
+"""
+emg_UR10move_NSF.py: A simple script to move the Universal Robot 10 (UR10) through a range of motion
+ that brings it to a pick up location, and then to a drop off location. The grasping and releasing
+ of the object (TBD) will be executed by the Shadow Hand (SH) from a different script.
+
+BioRobotics Lab, Florida Atlantic University, 2016
+"""
+
 from __future__ import division
+
+__author__ = "Thomas Colestock"
+__version__ = "1.0.0"
+
 import time
 
 import rospy
-from std_msgs.msg import String, Float32, UInt8
 
+from std_msgs.msg import String, Float32, UInt8
 from sr_robot_commander.sr_arm_commander import SrArmCommander
 from sr_robot_commander.sr_hand_commander import SrHandCommander
 
 
+rospy.init_node("ur10_move", anonymous=True)
+
 hand_commander = SrHandCommander()
 arm_commander = SrArmCommander()
-
-rospy.init_node("ur10_move", anonymous=True)
 
 
 # --------------- Arm Positions ---------------
